@@ -43,7 +43,7 @@ public class SignupController {
 
             entity = signupBusinessService.signup(userEntity);
      //  }
-        SignupUserResponse userResponse = new SignupUserResponse().id(entity.getUuid()).status("REGISTERED"); 
+        SignupUserResponse userResponse = new SignupUserResponse().id(entity.getUuid()).status("REGISTERED");
         return new ResponseEntity<SignupUserResponse>(userResponse, HttpStatus.CREATED);
     }
 }
