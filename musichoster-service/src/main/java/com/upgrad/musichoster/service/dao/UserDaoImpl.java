@@ -11,11 +11,12 @@ import javax.persistence.PersistenceContext;
 
 @Repository
 @Transactional
+
 public class UserDaoImpl implements UserDao {
 
 	@PersistenceContext private EntityManager entityManager;
 
-	@Override public UserEntity createUser(UserEntity userEntity) {
+	public UserEntity createUser(UserEntity userEntity){
 		entityManager.persist(userEntity);
 		return userEntity;
 	}
@@ -24,7 +25,7 @@ public class UserDaoImpl implements UserDao {
 		try {
 			return entityManager.createNamedQuery("userByEmail", UserEntity.class).setParameter("email", email)
 					.getSingleResult();
-		} catch (NoResultException nre) {
+		} catch (NoResultException e) {
 			return null;
 		}
 	}
@@ -32,6 +33,11 @@ public class UserDaoImpl implements UserDao {
 	@Override public UserAuthTokenEntity createAuthToken(UserAuthTokenEntity userAuthTokenEntity) {
 		entityManager.persist(userAuthTokenEntity);
 		return userAuthTokenEntity;
+	}
+
+	public UserEntity signup(UserEntity userEntity){
+		entityManager.persist(userEntity);
+		return userEntity;
 	}
 
 	@Override public void updateUser(UserEntity updatedUserEntity) {
