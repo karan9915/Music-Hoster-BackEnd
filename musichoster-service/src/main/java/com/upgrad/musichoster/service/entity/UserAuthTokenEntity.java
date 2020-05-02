@@ -14,7 +14,8 @@ import java.time.ZonedDateTime;
 @Entity
 @Table(name = "USER_AUTH_TOKENS")
 @NamedQueries({
-        @NamedQuery(name = "userAuthTokenByAccessToken", query = "select ut from UserAuthTokenEntity ut where ut.accessToken =:accessToken")
+        @NamedQuery(name = "userAuthTokenByAccessToken", query = "select ut from UserAuthTokenEntity ut where ut.accessToken =:accessToken"),
+        @NamedQuery(name = "userById" , query = "select ut from UserAuthTokenEntity ut where ut.user = :id")
 })
 public class UserAuthTokenEntity implements Serializable {
 
@@ -49,6 +50,56 @@ public class UserAuthTokenEntity implements Serializable {
         return new EqualsBuilder().append(this, obj).isEquals();
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public ZonedDateTime getLoginAt() {
+        return loginAt;
+    }
+
+    public void setLoginAt(ZonedDateTime loginAt) {
+        this.loginAt = loginAt;
+    }
+
+    public ZonedDateTime getExpiresAt() {
+        return expiresAt;
+    }
+
+    public void setExpiresAt(ZonedDateTime expiresAt) {
+        this.expiresAt = expiresAt;
+    }
+
+    public ZonedDateTime getLogoutAt() {
+        return logoutAt;
+    }
+
+    public void setLogoutAt(ZonedDateTime logoutAt) {
+        this.logoutAt = logoutAt;
+    }
+
+//    @Override
+//    public boolean equals(Object obj){return new EqualsBuilder().append(this, obj).isEquals();}
     @Override
     public int hashCode() {
         return new HashCodeBuilder().append(this).hashCode();
