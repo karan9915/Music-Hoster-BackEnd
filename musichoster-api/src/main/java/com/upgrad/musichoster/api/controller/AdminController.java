@@ -13,6 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.upgrad.musichoster.api.model.*;
 
+import java.time.ZonedDateTime;
+import java.util.UUID;
+@RestController
+
 @RequestMapping("/")
 public class AdminController {
 
@@ -27,13 +31,24 @@ public class AdminController {
         final MusicEntity musicEntity = adminService.getMusic(musicUuid, authorization);
 
         MusicDetailsResponse musicDetailsResponse = new MusicDetailsResponse().music(musicEntity.getMusic()).id((int) musicEntity.getId()).name(musicEntity.getName()).description(musicEntity.getDescription()).status(musicEntity.getStatus());
-
+        return new ResponseEntity<MusicDetailsResponse>(musicDetailsResponse, HttpStatus.OK);
     }
 
 
     @RequestMapping(method = RequestMethod.PUT, path = "/musics/update/{music_id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<UpdateMusicResponse> updateMusic(@RequestBody(required = false) final UpdateMusicRequest updateMusicRequest, @PathVariable("music_id") final long music_id, @RequestHeader("authorization") final String authorization) throws MusicNotFoundException, UnauthorizedException, UserNotSignedInException {
         MusicEntity musicEntity = new MusicEntity();
+        UpdateMusicResponse updateMusicResponse = new UpdateMusicResponse();
+        musicEntity.setName(updateMusicRequest.getName());
+        musicEntity.setUuid(UUID.randomUUID().toString());
+        musicEntity.setDescription(updateMusicRequest.getDescription());
+        musicEntity.setCreated_at(ZonedDateTime.now());
+        musicEntity.setMusic(updateMusicRequest.getMusic());
+        musicEntity.setStatus(updateMusicRequest.getStatus());
+        return new ResponseEntity<UpdateMusicResponse>( updateMusicResponse,HttpStatus.CREATED);
+
+
+
     }
 
     @RequestMapping(method = RequestMethod.PUT, path = "/musics/updatestatus/{music_id}/{status}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -42,7 +57,7 @@ public class AdminController {
         MusicEntity updatedmusicEntity = adminService.updateMusicStatus(music_id, status, authorization);
 
         UpdateMusicResponse updateMusicResponse = new UpdateMusicResponse().id((int) updatedmusicEntity.getId()).status(updatedmusicEntity.getStatus());
-
+        return new ResponseEntity<UpdateMusicResponse>(updateMusicResponse,HttpStatus.CREATED);
     }
 
 }
