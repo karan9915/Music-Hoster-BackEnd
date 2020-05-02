@@ -22,6 +22,7 @@ public class UserNotSignedInException extends Exception {
     public void printStackTrace(PrintStream s) {
         super.printStackTrace(s);
     }
+    
 
     @Override
     public void printStackTrace(PrintWriter s) {
