@@ -14,4 +14,6 @@ public interface UserDao {
 	 UserAuthTokenEntity createAuthToken(final UserAuthTokenEntity userAuthTokenEntity);
 
 	 void updateUser(final UserEntity updatedUserEntity);
+
+	UserEntity signup(UserEntity userEntity);
 }
