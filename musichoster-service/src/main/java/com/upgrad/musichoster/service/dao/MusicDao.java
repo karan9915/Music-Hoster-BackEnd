@@ -15,3 +15,4 @@ public interface MusicDao {
 
 	MusicEntity updateMusic(final MusicEntity musicEntity);
 }
+
