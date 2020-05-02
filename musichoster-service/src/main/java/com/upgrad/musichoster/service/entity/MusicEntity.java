@@ -32,4 +32,75 @@ public class MusicEntity implements Serializable {
 
 	@Column(name = "STATUS") private String status;
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
+	public String getMusic() {
+		return music;
+	}
+
+	public void setMusic(String music) {
+		this.music = music;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public long getNo_of_likes() {
+		return no_of_likes;
+	}
+
+	public void setNo_of_likes(long no_of_likes) {
+		this.no_of_likes = no_of_likes;
+	}
+
+	public UserEntity getUser() {
+		return user;
+	}
+
+	public void setUser(UserEntity user) {
+		this.user = user;
+	}
+
+	public ZonedDateTime getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(ZonedDateTime created_at) {
+		this.created_at = created_at;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }
