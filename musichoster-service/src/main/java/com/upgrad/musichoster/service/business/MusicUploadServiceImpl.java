@@ -16,6 +16,7 @@ import java.net.URL;
 	@Override public MusicEntity upload(MusicEntity musicEntity, String authorizationToken)
 			throws UploadFailedException {
 		UserAuthTokenEntity userAuthTokenEntity = musicDao.getUserAuthToken(authorizationToken);
+		return musicEntity;
 	}
 
 	public static boolean isValid(String url) {
