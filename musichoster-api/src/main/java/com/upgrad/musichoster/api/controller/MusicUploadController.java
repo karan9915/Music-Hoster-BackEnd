@@ -24,11 +24,12 @@ public class MusicUploadController {
     private MusicUploadService musicUploadService;
 
     @RequestMapping(method = RequestMethod.POST, path = "/musicupload", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<MusicUploadResponse> musicupload(@RequestBody(required = false) final MusicUploadRequest musicUploadRequest, @RequestHeader("authorization") final String authorization) throws
+    public ResponseEntity<MusicUploadResponse> musicupload( final MusicUploadRequest musicUploadRequest, @RequestHeader("authorization") final String authorization) throws
             UploadFailedException, UnsupportedEncodingException {
         final MusicEntity musicEntity = new MusicEntity();
 
-        final MusicEntity createdmusicEntity = musicUploadService.upload(musicEntity, authorization);
-
+        final MusicEntity createdMusicEntity = musicUploadService.upload(musicEntity, authorization);
+        MusicUploadResponse musicUploadResponse = new MusicUploadResponse();
+        return new ResponseEntity<MusicUploadResponse>(musicUploadResponse,HttpStatus.CREATED);
     }
 }
