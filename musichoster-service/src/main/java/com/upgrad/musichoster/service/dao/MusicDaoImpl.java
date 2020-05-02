@@ -50,5 +50,6 @@ public class MusicDaoImpl implements MusicDao {
 
 	@Override public MusicEntity updateMusic(final MusicEntity musicEntity) {
 		return entityManager.merge(musicEntity);
+		
 	}
 }
