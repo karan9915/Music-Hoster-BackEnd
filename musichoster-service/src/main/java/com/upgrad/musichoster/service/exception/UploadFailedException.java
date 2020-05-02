@@ -34,5 +34,4 @@ public class UploadFailedException extends Exception {
     public String getErrorMessage() {
         return errorMessage;
     }
-
 }
