@@ -34,7 +34,6 @@ public class UnauthorizedException extends Exception {
     }
 
     public String getErrorMessage() {
-        
         return errorMessage;
     }
 }
