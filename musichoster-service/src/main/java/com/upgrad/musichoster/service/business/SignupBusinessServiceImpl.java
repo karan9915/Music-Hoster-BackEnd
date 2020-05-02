@@ -50,6 +50,5 @@ public class SignupBusinessServiceImpl implements SignupBusinessService {
 		userEntity.setSalt(encrypt[0]);
 		userEntity.setPassword(encrypt[1]);
 		return userDao.signup(userEntity);
-
 	}
 }
