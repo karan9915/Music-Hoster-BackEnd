@@ -35,9 +35,7 @@ public class SignUpRestrictedException extends Exception {
     }
 
     public String getErrorMessage() {
-       
         return errorMessage;
     }
 
 }
-
