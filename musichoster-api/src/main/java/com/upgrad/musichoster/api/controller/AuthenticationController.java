@@ -44,6 +44,7 @@ public class AuthenticationController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("access-token", userAuthToken.getAccessToken());
+        
         return new ResponseEntity<AuthorizedUserResponse>(authorizedUserResponse,HttpStatus.OK);
     }
 }
