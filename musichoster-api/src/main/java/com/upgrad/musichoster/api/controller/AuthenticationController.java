@@ -31,10 +31,19 @@ public class AuthenticationController {
         byte[] decode = Base64.getDecoder().decode(authorization);
         String decodedText = new String(decode);
         String[] decodedArray = decodedText.split(":");
+        authenticationService.authenticate(decodedArray[0],decodedArray[1]);
 
-        UserAuthTokenEntity userAuthToken = authenticationService.authenticate(decodedArray[0], decodedArray[1]);
+            UserAuthTokenEntity userAuthToken = authenticationService.authenticate(decodedArray[0], decodedArray[1]);
 
         UserEntity user = userAuthToken.getUser();
 
+        AuthorizedUserResponse authorizedUserResponse = new AuthorizedUserResponse().id(UUID.fromString(user.getUuid()))
+                .firstName(user.getFirstName()).lastName(user.getLastName())
+                .emailAddress(user.getEmail()).mobilePhone(user.getMobilePhone())
+                .lastLoginTime(user.getLastLoginAt());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("access-token", userAuthToken.getAccessToken());
+        return new ResponseEntity<AuthorizedUserResponse>(authorizedUserResponse,HttpStatus.OK);
     }
 }
